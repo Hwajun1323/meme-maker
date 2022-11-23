@@ -7,6 +7,7 @@ const colorOptions = Array.from(
   document.getElementsByClassName("color-option")
 );
 const color = document.getElementById("color");
+const saveBtn = document.getElementById("save");
 const lineWidth = document.getElementById("line-width");
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -102,6 +103,14 @@ function onDoubleClick(event){
     }
 }
 
+function onSaveClick(event){
+    const url = canvas.toDataURL();
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "myDrawing.png";
+    a.click();
+}
+
 canvas.addEventListener("dblclick", onDoubleClick)
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
@@ -115,3 +124,4 @@ modeBtn.addEventListener("click", onModeClick);
 destroyBtn.addEventListener("click", onDestroyClick);
 eraserBtn.addEventListener("click", onEraserClick);
 fileInput.addEventListener("change", onFileChange);
+saveBtn.addEventListener("click", onSaveClick)
